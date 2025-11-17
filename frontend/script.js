@@ -1,4 +1,3 @@
-// Enquanto estiver testando local, o backend é o localhost:8080
 const API_URL = "http://localhost:8080/api/compound";
 
 const form = document.getElementById("compound-form");
@@ -24,7 +23,6 @@ form.addEventListener("submit", async (event) => {
   );
   const years = parseFloat(document.getElementById("years").value);
 
-  // Validação básica no frontend
   if (isNaN(principal) || principal <= 0) {
     errorDiv.textContent =
       "Informe um valor inicial (principal) maior que zero.";
