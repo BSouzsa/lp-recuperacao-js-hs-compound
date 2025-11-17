@@ -1,0 +1,16 @@
+# Haskell / Stack
+.stack-work/
+dist/
+dist-newstyle/
+*.hi
+*.o
+
+# VSCode
+.vscode/
+
+# Node / JS
+node_modules/
+
+# Sistema
+.DS_Store
+Thumbs.db
