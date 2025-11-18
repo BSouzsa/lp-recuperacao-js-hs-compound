@@ -72,6 +72,9 @@ main = do
   let frontendOrigin = "*"
 
   scotty port $ do
+  
+    get "/" $ do
+      text "API online"
 
     options "/api/compound" $ do
       addCors frontendOrigin
