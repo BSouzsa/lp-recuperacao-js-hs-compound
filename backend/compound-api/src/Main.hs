@@ -11,6 +11,9 @@ import           GHC.Generics                ( Generic )
 import           Data.Text.Lazy              ( Text )
 import qualified Data.Text.Lazy             as T
 import qualified Data.ByteString.Lazy       as BL
+import           System.Environment          ( lookupEnv )
+import           Data.Maybe                  ( fromMaybe )
+import           Text.Read                   ( readMaybe )
 
 data CompoundRequest = CompoundRequest
   { principal    :: Double
@@ -57,8 +60,18 @@ addCors origin = do
 
 main :: IO ()
 main = do
-  let frontendOrigin = "http://127.0.0.1:5500"
-  scotty 8080 $ do
+  -- Em produção, o Render injeta a porta na variável de ambiente PORT
+  portEnv <- lookupEnv "PORT"
+  let defaultPort = 8080
+      port = fromMaybe defaultPort (portEnv >>= readMaybe)
+
+  putStrLn $ "Starting server on port: " ++ show port
+
+  -- Para evitar dor de cabeça com CORS na correção, libera geral.
+  -- Se quiser travar só pro front da Vercel depois, é só trocar por essa URL.
+  let frontendOrigin = "*"
+
+  scotty port $ do
 
     options "/api/compound" $ do
       addCors frontendOrigin
