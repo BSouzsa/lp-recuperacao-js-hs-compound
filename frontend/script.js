@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:8080/api/compound";
+const API_URL = "https://lp-recuperacao-js-hs-compound-suf1.onrender.com/api/compound";
 
 const form = document.getElementById("compound-form");
 const resultDiv = document.getElementById("result");
